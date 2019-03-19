@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '@/_models';
-import { UserService, AuthenticationService } from '@/_services';
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
@@ -18,7 +19,7 @@ export class HomeComponent {
 
     ngOnInit() {
         this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
-            this.authenticationService.userFromApi = user;
+            this.userFromApi = user;
         });
     }
 }
